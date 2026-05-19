@@ -29,7 +29,7 @@
     }
   }
   </script>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
   <link rel="stylesheet" href="../css/style.css">
@@ -55,6 +55,7 @@
       margin-bottom: 28px;
     }
     .shop-count { font-size: 14px; color: var(--text-light); }
+    .shop-topbar-right { display: flex; align-items: center; gap: 10px; }
     .sort-select {
       padding: 8px 14px;
       border: 1px solid var(--border);
@@ -64,6 +65,20 @@
       background: var(--white);
       cursor: pointer;
     }
+    .shop-search-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      color: var(--text-mid);
+      cursor: pointer;
+      transition: border-color var(--transition), color var(--transition);
+    }
+    .shop-search-btn:hover { border-color: var(--rose); color: var(--rose-dark); }
     .active-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
     .filter-tag {
       display: flex; align-items: center; gap: 6px;
@@ -142,12 +157,17 @@
     <div>
       <div class="shop-topbar">
         <span class="shop-count" id="product-count">Loading…</span>
-        <select class="sort-select" id="sort-select">
-          <option value="default">Sort: Default</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="name-asc">Name: A–Z</option>
-        </select>
+        <div class="shop-topbar-right">
+          <button class="shop-search-btn" id="search-open-btn" aria-label="Search products">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <select class="sort-select" id="sort-select">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A–Z</option>
+          </select>
+        </div>
       </div>
       <div class="active-filters" id="active-filters"></div>
       <div class="product-grid" id="products-grid">
@@ -173,7 +193,6 @@
   let _allProducts = [];
 
   document.addEventListener('DOMContentLoaded', async () => {
-    // Read URL params and pre-set filters
     const catParam = getParam('cat') || '';
     const subParam = getParam('sub') || '';
 
@@ -184,22 +203,18 @@
       document.querySelectorAll('input[name="sub"]').forEach(r => r.checked = (r.value === subParam));
     }
 
-    // Update page title
     if (catParam) {
       document.getElementById('page-title').innerHTML = `${catParam} <em>Collection</em>`;
       document.getElementById('page-subtitle').textContent = CONFIG.CATEGORIES[catParam]?.description || '';
     }
 
-    // Load products
     _allProducts = await Products.fetchAll();
 
-    // Listen to filter changes
     document.querySelectorAll('input[name="cat"], input[name="sub"], #filter-sale, #filter-new, #sort-select')
       .forEach(el => el.addEventListener('change', renderFiltered));
 
     renderFiltered();
 
-    // Mobile filter toggle
     document.getElementById('filter-toggle-btn').addEventListener('click', () => {
       document.getElementById('filter-panel').classList.toggle('open');
     });
@@ -218,15 +233,12 @@
     if (sale)  items = items.filter(p => parseFloat(p.sale_price) > 0);
     if (isNew) items = items.filter(p => p.featured === 'TRUE' || p.featured === true);
 
-    // Sort
     if (sort === 'price-asc')  items.sort((a,b) => (parseFloat(a.sale_price||a.price)||0) - (parseFloat(b.sale_price||b.price)||0));
     if (sort === 'price-desc') items.sort((a,b) => (parseFloat(b.sale_price||b.price)||0) - (parseFloat(a.sale_price||a.price)||0));
     if (sort === 'name-asc')   items.sort((a,b) => a.name.localeCompare(b.name));
 
-    // Update count
     document.getElementById('product-count').textContent = `${items.length} product${items.length !== 1 ? 's' : ''}`;
 
-    // Update active filter tags
     const af = document.getElementById('active-filters');
     const tags = [];
     if (cat) tags.push(`<span class="filter-tag" onclick="clearFilter('cat')">${cat} ✕</span>`);
@@ -235,7 +247,6 @@
     if (isNew) tags.push(`<span class="filter-tag" onclick="clearFilter('new')">New Arrivals ✕</span>`);
     af.innerHTML = tags.join('');
 
-    // Render grid
     const grid = document.getElementById('products-grid');
     if (!items.length) {
       grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-light);">No products found. Try changing your filters.</p>';
@@ -247,7 +258,6 @@
       return html;
     }).join('');
 
-    // Quick add
     grid.querySelectorAll('.btn-quick-add').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault();
