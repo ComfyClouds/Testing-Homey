@@ -61,7 +61,7 @@ const Products = (() => {
     const salePrice = parseFloat(product.sale_price) || 0;
     const hasDiscount = salePrice > 0 && salePrice < price;
     const displayPrice = hasDiscount ? salePrice : price;
-    const img = product.image1 || `https://placehold.co/400x500/f0e0dc/9d5a5e?text=${encodeURIComponent(product.name)}`;
+    const img = product.image1 || `https://placehold.co/400x500/eae4f5/6b5a9e?text=${encodeURIComponent(product.name)}`;
 
     return `
       <div class="product-card" data-id="${product.id}">
@@ -90,7 +90,7 @@ const Products = (() => {
   //  Demo products
   // ----------------------------------------------------------
   function getDemoProducts() {
-    const makeImg = (name) => `https://placehold.co/400x500/f0e0dc/9d5a5e?text=${encodeURIComponent(name)}`;
+    const makeImg = (name) => `https://placehold.co/400x500/eae4f5/6b5a9e?text=${encodeURIComponent(name)}`;
     return [
       { id:'1', name:'Rose Garden PJ Set',      category:'PJs',    subcategory:'One Size', price:450, sale_price:380, description:'Soft cotton blend pajama set with a delicate rose pattern. Perfect for cozy nights in.', image1:makeImg('Rose PJs'),   featured:'TRUE', active:'TRUE' },
       { id:'2', name:'Blush Floral PJ Set',      category:'PJs',    subcategory:'Big Size', price:480, sale_price:'',  description:'Oversized cotton pajama set in a soft blush floral print. Breathable and luxurious.', image1:makeImg('Blush PJs'),  featured:'FALSE', active:'TRUE' },
