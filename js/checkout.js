@@ -22,7 +22,7 @@ function buildOrderSummary() {
 
   container.innerHTML = items.map(item => {
     const price = parseFloat(item.sale_price || item.price) || 0;
-    const img = item.image1 || `https://placehold.co/80x100/f0e0dc/9d5a5e?text=Item`;
+    const img = item.image1 || `https://placehold.co/80x100/eae4f5/6b5a9e?text=Item`;
     return `
       <div class="co-item">
         <img src="${img}" alt="${item.name}">
