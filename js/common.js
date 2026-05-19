@@ -63,9 +63,6 @@ function injectHeader() {
         <a href="${BASE_URL}shop/?cat=Cashes" class="${path.includes('shop') && location.search.includes('Cashes') ? 'active' : ''}">Cashes</a>
       </div>
       <div class="nav-actions">
-        <button class="search-nav-btn" id="search-open-btn" aria-label="Search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
         <a href="${BASE_URL}cart/" class="cart-btn" aria-label="Cart">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           <span class="cart-count" style="display:none">0</span>
