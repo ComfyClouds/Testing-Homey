@@ -19,16 +19,16 @@
   /* Text & Typography */
   --text-dark:   #1A202C; /* Deep midnight-ink for crisp, high-end typography */
   --text-mid:    #4A5568; /* Balanced slate-grey for body text, descriptions, and metadata */
-  --text-light:  #718096; /* Soft mist-grey for placeholders and secondary labels */
+  --text-light:  #A0AEC0; /* Lightened to match the new palette for placeholders and secondary labels */
   --white:       #FFFFFF; /* Pure white for product cards and high-contrast containers */
  
   /* Borders & Dividers */
-  --border:      #E2E8F0; /* Clean, cool border for product cards and form inputs */
-  --border-soft: #EDF2F7; /* Faint, elegant divider line for separating page sections */
+  --border:      #CBD5E0; /* Darkened for clear visibility against white and cream backgrounds */
+  --border-soft: #E2E8F0; /* Darkened to ensure structural separation is visible */
  
   /* System Status */
-  --success:     #68D391; /* Soft mint green for successful actions and in-stock badges */
-  --error:       #FC8181; /* Soft pastel red for alerts and out-of-stock messages */
+  --success:     #48BB78; /* Darkened for readable text contrast on success elements */
+  --error:       #E53E3E; /* Darkened for readable text contrast on error elements */
  
   --ff-display:  'Cormorant Garamond', Georgia, serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
