@@ -9,26 +9,26 @@
 /* -------- Variables ---------------------------------------- */
 :root {
   /* Brand Identity & Accents */
-  --cream:       #FDFBF9; /* Soft vanilla base for a clean, bright, and inviting storefront */
-  --oatmeal:     #F5ECE5; /* Warm cashmere neutral for structural sections and banners */
-  --sage-light:  #F6EAE1; /* Delicate silk tint for soft highlights and hover states */
-  --sage:        #D4A373; /* Core brand color: warm, elegant caramel-gold accent */
-  --sage-dark:   #9C6644; /* Primary CTA button background and prominent active links */
-  --sage-deep:   #5C3D2E; /* Deepest accent for luxury, high-end structural contrast */
+  --cream:       #F7FAFC; /* Clean, airy, and cooling base for a fresh storefront */
+  --oatmeal:     #EDF2F7; /* Soft morning-mist neutral for section backgrounds and banners */
+  --sage-light:  #E2E8F0; /* Delicate ice-blue tint for soft highlights and hover states */
+  --sage:        #A0AEC0; /* Core brand color: muted powder blue, calming and serene */
+  --sage-dark:   #4A5568; /* Primary CTA button background and prominent active links */
+  --sage-deep:   #2D3748; /* Deepest structural accent for sophisticated contrast */
  
   /* Text & Typography */
-  --text-dark:   #2B1E17; /* Deep roasted-espresso for crisp, premium typography */
-  --text-mid:    #6D594F; /* Balanced body text for descriptions and metadata */
-  --text-light:  #A39085; /* Soft taupe for placeholders and secondary labels */
+  --text-dark:   #1A202C; /* Deep midnight-ink for crisp, high-end typography */
+  --text-mid:    #4A5568; /* Balanced slate-grey for body text, descriptions, and metadata */
+  --text-light:  #718096; /* Soft mist-grey for placeholders and secondary labels */
   --white:       #FFFFFF; /* Pure white for product cards and high-contrast containers */
  
   /* Borders & Dividers */
-  --border:      #E6DDD7; /* Clean, warm border for product cards and form inputs */
-  --border-soft: #F2EBE6; /* Faint, elegant divider line for separating page sections */
+  --border:      #E2E8F0; /* Clean, cool border for product cards and form inputs */
+  --border-soft: #EDF2F7; /* Faint, elegant divider line for separating page sections */
  
   /* System Status */
-  --success:     #7A9A82; /* Soft, muted green for successful actions and in-stock badges */
-  --error:       #C46D6D; /* Softened rose-red for alerts and out-of-stock messages */
+  --success:     #68D391; /* Soft mint green for successful actions and in-stock badges */
+  --error:       #FC8181; /* Soft pastel red for alerts and out-of-stock messages */
  
   --ff-display:  'Cormorant Garamond', Georgia, serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
@@ -38,7 +38,7 @@
   --max-w:       1280px;
   --radius:      10px;
   --radius-sm:   6px;
-  --shadow:      0 4px 24px rgba(43, 30, 23, 0.05);
+  --shadow:      0 4px 24px rgba(26, 32, 44, 0.04);
   --transition:  .25s ease;
 }
 
