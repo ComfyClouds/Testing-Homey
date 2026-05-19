@@ -9,26 +9,26 @@
 /* -------- Variables ---------------------------------------- */
 :root {
   /* Brand Identity & Accents */
-  --cream:       #F7FAFC; /* Clean, airy, and cooling base for a fresh storefront */
-  --oatmeal:     #EDF2F7; /* Soft morning-mist neutral for section backgrounds and banners */
-  --sage-light:  #E2E8F0; /* Delicate ice-blue tint for soft highlights and hover states */
-  --sage:        #A0AEC0; /* Core brand color: muted powder blue, calming and serene */
-  --sage-dark:   #4A5568; /* Primary CTA button background and prominent active links */
-  --sage-deep:   #2D3748; /* Deepest structural accent for sophisticated contrast */
+  --cream:       #1A202C; /* Dark midnight-blue background base for a rich, luxury dark mode */
+  --oatmeal:     #2D3748; /* Deep slate container background for sections and banners */
+  --sage-light:  #4A5568; /* Soft charcoal-blue for hover states and secondary backgrounds */
+  --sage:        #A0AEC0; /* Core brand color: muted powder blue, pops beautifully against dark backgrounds */
+  --sage-dark:   #CBD5E0; /* Light silver-blue for prominent active links and high-contrast buttons */
+  --sage-deep:   #E2E8F0; /* Brightest structural accent for elegant highlights */
  
   /* Text & Typography */
-  --text-dark:   #1A202C; /* Deep midnight-ink for crisp, high-end typography */
-  --text-mid:    #4A5568; /* Balanced slate-grey for body text, descriptions, and metadata */
-  --text-light:  #A0AEC0; /* Lightened to match the new palette for placeholders and secondary labels */
-  --white:       #FFFFFF; /* Pure white for product cards and high-contrast containers */
+  --text-dark:   #F7FAFC; /* Bright off-white for crisp, highly readable main headings */
+  --text-mid:    #E2E8F0; /* Clear light-grey for body text, descriptions, and metadata */
+  --text-light:  #A0AEC0; /* Muted slate-grey for placeholders and secondary labels */
+  --white:       #2D3748; /* Deep slate background for product cards to stand out on the dark base */
  
   /* Borders & Dividers */
-  --border:      #CBD5E0; /* Darkened for clear visibility against white and cream backgrounds */
-  --border-soft: #E2E8F0; /* Darkened to ensure structural separation is visible */
+  --border:      #4A5568; /* Subtle dark border for product cards and form inputs */
+  --border-soft: #2D3748; /* Deep divider line for separating page sections without clashing */
  
   /* System Status */
-  --success:     #48BB78; /* Darkened for readable text contrast on success elements */
-  --error:       #E53E3E; /* Darkened for readable text contrast on error elements */
+  --success:     #48BB78; /* Vibrant mint green for successful actions and badges */
+  --error:       #F56565; /* Bright coral red for alerts and out-of-stock messages */
  
   --ff-display:  'Cormorant Garamond', Georgia, serif;
   --ff-body:     'DM Sans', system-ui, sans-serif;
@@ -38,7 +38,7 @@
   --max-w:       1280px;
   --radius:      10px;
   --radius-sm:   6px;
-  --shadow:      0 4px 24px rgba(26, 32, 44, 0.04);
+  --shadow:      0 4px 24px rgba(0, 0, 0, 0.4);
   --transition:  .25s ease;
 }
 
