@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   injectHeader();
   injectFooter();
   startAnnouncementRotation();
+  injectSearchOverlay();
 });
 
 // ----------------------------------------------------------
@@ -62,6 +63,9 @@ function injectHeader() {
         <a href="${BASE_URL}shop/?cat=Cashes" class="${path.includes('shop') && location.search.includes('Cashes') ? 'active' : ''}">Cashes</a>
       </div>
       <div class="nav-actions">
+        <button class="search-nav-btn" id="search-open-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
         <a href="${BASE_URL}cart/" class="cart-btn" aria-label="Cart">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           <span class="cart-count" style="display:none">0</span>
@@ -170,4 +174,114 @@ function showToast(msg, type = 'success') {
 // ----------------------------------------------------------
 function getParam(name) {
   return new URLSearchParams(window.location.search).get(name);
+}
+
+// ----------------------------------------------------------
+//  Search Overlay
+// ----------------------------------------------------------
+function injectSearchOverlay() {
+  // Build overlay DOM
+  const overlay = document.createElement('div');
+  overlay.id = 'search-overlay';
+  overlay.className = 'search-overlay';
+  overlay.innerHTML = `
+    <div class="search-bar-wrap">
+      <svg class="search-icon-static" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-main-input" id="search-main-input" type="text" placeholder="Search products…" autocomplete="off" spellcheck="false">
+      <button class="search-close-btn" id="search-close-btn" aria-label="Close search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="search-results-area" id="search-results-area"></div>`;
+  document.body.appendChild(overlay);
+
+  // Wire open button (injected after header renders)
+  document.addEventListener('click', e => {
+    if (e.target.closest('#search-open-btn')) openSearch();
+  });
+
+  // Close button
+  document.getElementById('search-close-btn').addEventListener('click', closeSearch);
+
+  // Close on backdrop click (not on the panel itself)
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeSearch();
+  });
+
+  // Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSearch();
+  });
+
+  // Debounced search input
+  let _debounce;
+  document.getElementById('search-main-input').addEventListener('input', e => {
+    clearTimeout(_debounce);
+    _debounce = setTimeout(() => runSearch(e.target.value.trim()), 220);
+  });
+}
+
+function openSearch() {
+  const overlay = document.getElementById('search-overlay');
+  if (!overlay) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('search-main-input')?.focus(), 50);
+}
+
+function closeSearch() {
+  const overlay = document.getElementById('search-overlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  const input = document.getElementById('search-main-input');
+  if (input) input.value = '';
+  const area = document.getElementById('search-results-area');
+  if (area) area.innerHTML = '';
+}
+
+async function runSearch(query) {
+  const area = document.getElementById('search-results-area');
+  if (!area) return;
+
+  if (!query) { area.innerHTML = ''; return; }
+
+  area.innerHTML = '<div class="search-results-label">Searching…</div>';
+
+  let products = [];
+  try { products = await Products.fetchAll(); } catch (e) { /* silent */ }
+
+  const q = query.toLowerCase();
+  const results = products.filter(p =>
+    p.active === true || p.active === 'TRUE' || p.active === undefined
+  ).filter(p =>
+    (p.name        || '').toLowerCase().includes(q) ||
+    (p.category    || '').toLowerCase().includes(q) ||
+    (p.subcategory || '').toLowerCase().includes(q) ||
+    (p.description || '').toLowerCase().includes(q)
+  );
+
+  if (!results.length) {
+    area.innerHTML = `
+      <div class="search-no-results">
+        No results for "${query}"
+        <span>Try a different keyword or browse the shop</span>
+      </div>`;
+    return;
+  }
+
+  area.innerHTML = `
+    <div class="search-results-label">${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"</div>
+    <div class="search-results-grid">
+      ${results.map(p => Products.cardHTML(p)).join('')}
+    </div>`;
+
+  // Quick-add buttons inside results
+  area.querySelectorAll('.btn-quick-add').forEach(btn => {
+    btn.addEventListener('click', async e => {
+      e.preventDefault();
+      const product = results.find(p => String(p.id) === String(btn.dataset.id));
+      if (product) { Cart.add(product, 1); showToast('Added to cart ✓'); }
+    });
+  });
 }
