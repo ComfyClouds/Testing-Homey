@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop PJs & Cashes | Homey Vibes — Women's Home Wear Egypt</title>
+  <meta name="description" content="Browse Homey Vibes' full collection of feminine home wear — cozy PJs and Cashes for women in One Size (55–70kg) and Big Size (80–110kg). Cash on delivery across Egypt. تسوقي بيجامات وكاشات نسائية.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://homey-vibes.store/shop/">
+  <meta property="og:title" content="Shop PJs & Cashes — Homey Vibes">
+  <meta property="og:description" content="Egypt's favourite cozy home wear. PJs and Cashes in One Size and Big Size. Cash on delivery.">
+  <meta property="og:url" content="https://homey-vibes.store/shop/">
+  <meta property="og:image" content="https://homey-vibes.store/H-V_Logo.jpeg">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Shop — Homey Vibes",
+    "url": "https://homey-vibes.store/shop/",
+    "description": "Browse all PJs and Cashes in One Size and Big Size",
+    "isPartOf": { "@id": "https://homey-vibes.store/#website" },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://homey-vibes.store/" },
+        { "@type": "ListItem", "position": 2, "name": "Shop", "item": "https://homey-vibes.store/shop/" }
+      ]
+    }
+  }
+  </script>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .shop-page { max-width: var(--max-w); margin: 0 auto; padding: 40px; }
+    .filter-mobile-btn {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      color: var(--text-mid);
+      margin-bottom: 20px;
+      cursor: pointer;
+      background: var(--white);
+    }
+    .shop-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .shop-count { font-size: 14px; color: var(--text-light); }
+    .sort-select {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      color: var(--text-mid);
+      background: var(--white);
+      cursor: pointer;
+    }
+    .active-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .filter-tag {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--blush); color: var(--rose-dark);
+      padding: 4px 12px; border-radius: 99px;
+      font-size: 12.5px; cursor: pointer;
+    }
+    .filter-tag:hover { background: var(--border); }
+    @media(max-width:768px) {
+      .shop-page { padding: 24px; }
+      .filter-mobile-btn { display: flex; }
+      .filter-panel { display: none; }
+      .filter-panel.open { display: block; position: static; margin-bottom: 24px; }
+      .shop-layout { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="announcement-bar"></div>
+<header id="main-header"></header>
+
+<div class="page-header">
+  <h1 id="page-title">All <em>Products</em></h1>
+  <p id="page-subtitle">Feminine home wear crafted for comfort</p>
+</div>
+
+<div class="shop-page">
+
+  <button class="filter-mobile-btn" id="filter-toggle-btn">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+    Filters
+  </button>
+
+  <div class="shop-layout" style="display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start;">
+
+    <!-- FILTER PANEL -->
+    <aside class="filter-panel" id="filter-panel">
+      <div class="filter-group">
+        <h4>Category</h4>
+        <label class="filter-option">
+          <input type="radio" name="cat" value="" checked> All Categories
+        </label>
+        <label class="filter-option">
+          <input type="radio" name="cat" value="PJs"> PJs
+        </label>
+        <label class="filter-option">
+          <input type="radio" name="cat" value="Cashes"> Cashes
+        </label>
+      </div>
+      <div class="filter-group">
+        <h4>Size</h4>
+        <label class="filter-option">
+          <input type="radio" name="sub" value="" checked> All Sizes
+        </label>
+        <label class="filter-option">
+          <input type="radio" name="sub" value="One Size"> One Size
+        </label>
+        <label class="filter-option">
+          <input type="radio" name="sub" value="Big Size"> Big Size
+        </label>
+      </div>
+      <div class="filter-group">
+        <h4>Availability</h4>
+        <label class="filter-option">
+          <input type="checkbox" id="filter-sale"> On Sale
+        </label>
+        <label class="filter-option">
+          <input type="checkbox" id="filter-new"> New Arrivals
+        </label>
+      </div>
+      <button class="btn btn-ghost btn-full" style="font-size:12.5px;padding:10px;" onclick="clearFilters()">Clear All Filters</button>
+    </aside>
+
+    <!-- PRODUCT AREA -->
+    <div>
+      <div class="shop-topbar">
+        <span class="shop-count" id="product-count">Loading…</span>
+        <select class="sort-select" id="sort-select">
+          <option value="default">Sort: Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name-asc">Name: A–Z</option>
+        </select>
+      </div>
+      <div class="active-filters" id="active-filters"></div>
+      <div class="product-grid" id="products-grid">
+        <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+        <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+        <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+        <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+        <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+        <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main-footer"></div>
+
+<script>var _BASE_URL = "../";</script>
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/products.js"></script>
+<script>
+  let _allProducts = [];
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Read URL params and pre-set filters
+    const catParam = getParam('cat') || '';
+    const subParam = getParam('sub') || '';
+
+    if (catParam) {
+      document.querySelectorAll('input[name="cat"]').forEach(r => r.checked = (r.value === catParam));
+    }
+    if (subParam) {
+      document.querySelectorAll('input[name="sub"]').forEach(r => r.checked = (r.value === subParam));
+    }
+
+    // Update page title
+    if (catParam) {
+      document.getElementById('page-title').innerHTML = `${catParam} <em>Collection</em>`;
+      document.getElementById('page-subtitle').textContent = CONFIG.CATEGORIES[catParam]?.description || '';
+    }
+
+    // Load products
+    _allProducts = await Products.fetchAll();
+
+    // Listen to filter changes
+    document.querySelectorAll('input[name="cat"], input[name="sub"], #filter-sale, #filter-new, #sort-select')
+      .forEach(el => el.addEventListener('change', renderFiltered));
+
+    renderFiltered();
+
+    // Mobile filter toggle
+    document.getElementById('filter-toggle-btn').addEventListener('click', () => {
+      document.getElementById('filter-panel').classList.toggle('open');
+    });
+  });
+
+  function renderFiltered() {
+    const cat   = document.querySelector('input[name="cat"]:checked')?.value || '';
+    const sub   = document.querySelector('input[name="sub"]:checked')?.value || '';
+    const sale  = document.getElementById('filter-sale').checked;
+    const isNew = document.getElementById('filter-new').checked;
+    const sort  = document.getElementById('sort-select').value;
+
+    let items = _allProducts.filter(p => p.active === 'TRUE' || p.active === true || p.active === undefined);
+    if (cat) items = items.filter(p => p.category === cat);
+    if (sub) items = items.filter(p => p.subcategory === sub);
+    if (sale)  items = items.filter(p => parseFloat(p.sale_price) > 0);
+    if (isNew) items = items.filter(p => p.featured === 'TRUE' || p.featured === true);
+
+    // Sort
+    if (sort === 'price-asc')  items.sort((a,b) => (parseFloat(a.sale_price||a.price)||0) - (parseFloat(b.sale_price||b.price)||0));
+    if (sort === 'price-desc') items.sort((a,b) => (parseFloat(b.sale_price||b.price)||0) - (parseFloat(a.sale_price||a.price)||0));
+    if (sort === 'name-asc')   items.sort((a,b) => a.name.localeCompare(b.name));
+
+    // Update count
+    document.getElementById('product-count').textContent = `${items.length} product${items.length !== 1 ? 's' : ''}`;
+
+    // Update active filter tags
+    const af = document.getElementById('active-filters');
+    const tags = [];
+    if (cat) tags.push(`<span class="filter-tag" onclick="clearFilter('cat')">${cat} ✕</span>`);
+    if (sub) tags.push(`<span class="filter-tag" onclick="clearFilter('sub')">${sub} ✕</span>`);
+    if (sale)  tags.push(`<span class="filter-tag" onclick="clearFilter('sale')">On Sale ✕</span>`);
+    if (isNew) tags.push(`<span class="filter-tag" onclick="clearFilter('new')">New Arrivals ✕</span>`);
+    af.innerHTML = tags.join('');
+
+    // Render grid
+    const grid = document.getElementById('products-grid');
+    if (!items.length) {
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-light);">No products found. Try changing your filters.</p>';
+      return;
+    }
+    grid.innerHTML = items.map((p, i) => {
+      let html = Products.cardHTML(p);
+      html = html.replace('class="product-card"', `class="product-card" style="animation-delay:${Math.min(i,8) * 0.06}s"`);
+      return html;
+    }).join('');
+
+    // Quick add
+    grid.querySelectorAll('.btn-quick-add').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const p = await Products.getById(btn.dataset.id);
+        if (!p) return;
+        Cart.add(p, 1);
+        showToast(`${p.name} added to cart ✓`);
+      });
+    });
+  }
+
+  function clearFilter(type) {
+    if (type === 'cat') document.querySelector('input[name="cat"][value=""]').checked = true;
+    if (type === 'sub') document.querySelector('input[name="sub"][value=""]').checked = true;
+    if (type === 'sale') document.getElementById('filter-sale').checked = false;
+    if (type === 'new')  document.getElementById('filter-new').checked = false;
+    renderFiltered();
+  }
+
+  function clearFilters() {
+    document.querySelector('input[name="cat"][value=""]').checked = true;
+    document.querySelector('input[name="sub"][value=""]').checked = true;
+    document.getElementById('filter-sale').checked = false;
+    document.getElementById('filter-new').checked = false;
+    document.getElementById('sort-select').value = 'default';
+    renderFiltered();
+  }
+</script>
+</body>
+</html>

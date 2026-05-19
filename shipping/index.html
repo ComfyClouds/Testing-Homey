@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery & Shipping — Homey Vibes</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .shipping-wrapper { overflow-x: auto; }
+    @media(max-width:600px) {
+      .shipping-table th, .shipping-table td { padding: 10px 12px; font-size:13px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="announcement-bar"></div>
+<header id="main-header"></header>
+
+<div class="page-header">
+  <h1>Delivery &amp; <em>Shipping</em></h1>
+  <p>We deliver across all of Egypt 🇪🇬</p>
+</div>
+
+<div class="legal-content">
+  <a href="../" class="legal-back">← Back to Home</a>
+
+  <p>Shipping rates and estimated delivery times are listed below by zone. All orders are fulfilled with care and handed to our trusted courier partners.</p>
+
+  <div class="shipping-wrapper">
+    <table class="shipping-table" id="shipping-table">
+      <thead>
+        <tr>
+          <th>Zone / Governorate</th>
+          <th>Estimated Time</th>
+          <th>Shipping Fee</th>
+        </tr>
+      </thead>
+      <tbody id="shipping-tbody"></tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;">
+    <div style="background:var(--blush);border-radius:var(--radius-sm);padding:14px 18px;font-size:13.5px;color:var(--text-mid);">
+      <strong style="color:var(--text-dark);">📝 Pre-Order Note:</strong> During pre-order phases, the estimated delivery time is 10–15 business days for any zone.
+    </div>
+  </div>
+
+  <div style="margin-top:32px;padding:20px 24px;background:var(--white);border:1px solid var(--border-soft);border-radius:var(--radius);font-size:13.5px;color:var(--text-mid);">
+    Questions about your delivery? <a href="https://wa.me/" id="ship-wa" style="color:var(--rose-dark);font-weight:500;">Chat with us on WhatsApp</a>
+  </div>
+</div>
+
+<div id="main-footer"></div>
+<script>var _BASE_URL = "../";</script>
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/common.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('ship-wa').href = `https://wa.me/${CONFIG.WHATSAPP}`;
+    const tbody = document.getElementById('shipping-tbody');
+    tbody.innerHTML = Object.entries(CONFIG.SHIPPING).map(([zone, info]) => `
+      <tr>
+        <td>${zone}</td>
+        <td>${info.days}</td>
+        <td class="price-col">${formatPrice(info.price)}</td>
+      </tr>`).join('');
+  });
+</script>
+</body>
+</html>

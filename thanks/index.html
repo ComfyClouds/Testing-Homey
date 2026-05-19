@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Homey Vibes</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="announcement-bar"></div>
+<header id="main-header"></header>
+
+<div style="max-width:var(--max-w);margin:0 auto;padding:60px 40px 80px;">
+  <div class="thanks-page">
+
+    <div class="thanks-icon">🌸</div>
+    <h1>Thank <em>you!</em></h1>
+    <p>Your order has been placed successfully.</p>
+    <p style="font-size:14px;color:var(--text-light);" id="thanks-sub">We'll reach out to confirm your delivery details.</p>
+
+    <div class="order-details-box" id="order-details-box" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border-soft);">
+        <div>
+          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Order ID</div>
+          <div style="font-weight:500;font-size:15px;" id="thanks-order-id">—</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;">Date</div>
+          <div style="font-size:14px;" id="thanks-date">—</div>
+        </div>
+      </div>
+      <div class="order-detail-row">
+        <span class="label">Name</span>
+        <span id="thanks-name">—</span>
+      </div>
+      <div class="order-detail-row">
+        <span class="label">Phone</span>
+        <span id="thanks-phone">—</span>
+      </div>
+      <div class="order-detail-row">
+        <span class="label">Governorate</span>
+        <span id="thanks-gov">—</span>
+      </div>
+      <div class="order-detail-row">
+        <span class="label">Delivery Time</span>
+        <span id="thanks-days">—</span>
+      </div>
+      <div class="order-detail-row" id="thanks-discount-row" style="display:none;">
+        <span class="label">Discount</span>
+        <span id="thanks-discount" style="color:var(--success);">—</span>
+      </div>
+      <div class="order-detail-row">
+        <span class="label">Shipping</span>
+        <span id="thanks-shipping">—</span>
+      </div>
+      <div class="order-detail-row" style="font-weight:500;">
+        <span class="label">Total (Cash on Delivery)</span>
+        <span id="thanks-total" style="color:var(--rose-dark);">—</span>
+      </div>
+    </div>
+
+    <!-- Products ordered -->
+    <div id="thanks-products-box" style="display:none;margin-top:0;">
+      <div style="text-align:left;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-light);margin-bottom:10px;">Items Ordered</div>
+      <div id="thanks-products-list" style="background:var(--white);border:1px solid var(--border-soft);border-radius:var(--radius);padding:16px;"></div>
+    </div>
+
+    <div style="margin-top:32px;padding:20px 24px;background:var(--blush);border-radius:var(--radius);text-align:left;">
+      <div style="font-size:14px;font-weight:500;color:var(--text-dark);margin-bottom:8px;">📦 What happens next?</div>
+      <ul style="font-size:13.5px;color:var(--text-mid);line-height:1.9;padding-left:16px;list-style:disc;">
+        <li>Our team will review your order and contact you to confirm</li>
+        <li>Your order will be packed with care and handed to the courier</li>
+        <li>The courier will call you before delivery</li>
+        <li>Pay the total amount in cash when your order arrives — feel free to inspect it first!</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:20px;padding:14px 20px;background:var(--white);border:1px solid var(--border-soft);border-radius:var(--radius);font-size:13.5px;color:var(--text-mid);">
+      Questions? Chat with us on
+      <a id="thanks-wa-link" href="#" target="_blank" style="color:var(--rose-dark);font-weight:500;">WhatsApp</a>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+      <a href="../shop/" class="btn btn-primary">Continue Shopping</a>
+      <a href="../" class="btn btn-ghost">Back to Home</a>
+    </div>
+
+  </div>
+</div>
+
+<div id="main-footer"></div>
+
+<script>var _BASE_URL = "../";</script>
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/common.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const raw = localStorage.getItem('homeyvibes_last_order');
+    document.getElementById('thanks-wa-link').href = `https://wa.me/${CONFIG.WHATSAPP}`;
+
+    if (!raw) return;
+
+    try {
+      const o = JSON.parse(raw);
+
+      document.getElementById('order-details-box').style.display = 'block';
+      document.getElementById('thanks-order-id').textContent = o.order_id || '—';
+      document.getElementById('thanks-date').textContent     = o.date || '—';
+      document.getElementById('thanks-name').textContent     = o.name || '—';
+      document.getElementById('thanks-phone').textContent    = o.phone || '—';
+      document.getElementById('thanks-gov').textContent      = o.governorate || '—';
+      document.getElementById('thanks-shipping').textContent = o.shipping > 0 ? formatPrice(o.shipping) : '—';
+      document.getElementById('thanks-total').textContent    = formatPrice(o.total);
+      document.getElementById('thanks-sub').textContent      = `Order #${o.order_id} · We'll call you to confirm delivery.`;
+
+      const shippingInfo = CONFIG.SHIPPING[o.governorate];
+      document.getElementById('thanks-days').textContent = shippingInfo ? shippingInfo.days : '1–7 business days';
+
+      if (o.discount > 0) {
+        document.getElementById('thanks-discount-row').style.display = 'flex';
+        document.getElementById('thanks-discount').textContent = `- ${formatPrice(o.discount)}`;
+      }
+
+      // Products list
+      if (o.products) {
+        try {
+          const products = Array.isArray(o.products) ? o.products : JSON.parse(o.products);
+          document.getElementById('thanks-products-box').style.display = 'block';
+          document.getElementById('thanks-products-list').innerHTML = products
+            .map(p => {
+              const label = typeof p === 'object' ? `${p.name}${p.size ? ' (' + p.size + ')' : ''} × ${p.qty}` : p;
+              return `<div style="font-size:13.5px;color:var(--text-mid);padding:4px 0;border-bottom:1px solid var(--border-soft);">${label}</div>`;
+            })
+            .join('');
+        } catch(e) { /* ignore */ }
+      }
+
+      // Clear the saved order after showing it
+      localStorage.removeItem('homeyvibes_last_order');
+
+    } catch (e) {
+      console.warn('Could not parse last order', e);
+    }
+  });
+</script>
+</body>
+</html>

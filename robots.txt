@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /checkout/
+Disallow: /thanks/
+
+# Allow Google to crawl all important pages
+User-agent: Googlebot
+Allow: /
+Disallow: /checkout/
+Disallow: /thanks/
+
+Sitemap: https://homey-vibes.store/sitemap.xml

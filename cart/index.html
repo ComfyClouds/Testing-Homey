@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Homey Vibes</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="announcement-bar"></div>
+<header id="main-header"></header>
+
+<div class="page-header">
+  <h1>Your <em>Cart</em></h1>
+</div>
+
+<div style="max-width:var(--max-w);margin:0 auto;padding:40px;" id="cart-wrapper">
+  <div class="spinner"></div>
+</div>
+
+<div id="main-footer"></div>
+
+<script>var _BASE_URL = "../";</script>
+<script src="../js/config.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/products.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    await Cart.validate();
+    renderCart();
+  });
+  window.addEventListener('cart:updated', renderCart);
+
+  function renderCart() {
+    const items   = Cart.getAll();
+    const wrapper = document.getElementById('cart-wrapper');
+
+    if (!items.length) {
+      wrapper.innerHTML = `
+        <div class="cart-empty">
+          <div style="font-size:56px;margin-bottom:16px;">🛍️</div>
+          <h2>Your cart is empty</h2>
+          <p>Looks like you haven't added anything yet.</p>
+          <a href="../shop/" class="btn btn-primary">Start Shopping</a>
+        </div>`;
+      return;
+    }
+
+    const subtotal = Cart.subtotal();
+
+    wrapper.innerHTML = `
+      <div class="cart-layout">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <h2 style="font-family:var(--ff-display);font-size:22px;font-weight:500;">${items.length} item${items.length !== 1 ? 's' : ''}</h2>
+            <button onclick="Cart.clear()" style="font-size:12.5px;color:var(--text-light);text-decoration:underline;background:none;border:none;cursor:pointer;">Clear cart</button>
+          </div>
+          <div class="cart-items" id="cart-items-list">
+            ${items.map(item => renderItem(item)).join('')}
+          </div>
+          <div style="margin-top:28px;">
+            <a href="../shop/" style="font-size:14px;color:var(--rose-dark);display:inline-flex;align-items:center;gap:6px;">
+              ← Continue Shopping
+            </a>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span>${formatPrice(subtotal)}</span></div>
+          <div class="summary-row"><span>Shipping</span><span style="color:var(--text-light);">Calculated at checkout</span></div>
+          <div class="summary-row summary-total"><span>Estimated Total</span><span>${formatPrice(subtotal)}</span></div>
+          <a href="../checkout/" class="btn btn-primary btn-full mt-16" style="margin-top:20px;">
+            Proceed to Checkout
+          </a>
+          <div style="text-align:center;margin-top:14px;font-size:12.5px;color:var(--text-light);">
+            Cash on Delivery · Secure Checkout
+          </div>
+          <div style="border-top:1px solid var(--border-soft);margin-top:20px;padding-top:16px;">
+            <p style="font-size:13px;color:var(--text-mid);margin-bottom:8px;">Have a promo code?</p>
+            <p style="font-size:12.5px;color:var(--text-light);">You can enter it on the checkout page.</p>
+          </div>
+        </div>
+      </div>`;
+
+    // Bind quantity and remove buttons
+    document.querySelectorAll('.ci-qty-minus').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.key;
+        const item = Cart.getAll().find(i => i._key === key);
+        if (item) Cart.updateQty(key, item.qty - 1);
+      });
+    });
+    document.querySelectorAll('.ci-qty-plus').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.key;
+        const item = Cart.getAll().find(i => i._key === key);
+        if (item) Cart.updateQty(key, item.qty + 1);
+      });
+    });
+    document.querySelectorAll('.ci-remove').forEach(btn => {
+      btn.addEventListener('click', () => Cart.remove(btn.dataset.key));
+    });
+  }
+
+  function renderItem(item) {
+    const price   = parseFloat(item.sale_price || item.price) || 0;
+    const lineTotal = price * item.qty;
+    const img     = item.image1 || `https://placehold.co/100x120/f0e0dc/9d5a5e?text=Item`;
+    return `
+      <div class="cart-item">
+        <div class="cart-item-img">
+          <a href="../product/?id=${item.id}"><img src="${img}" alt="${item.name}"></a>
+        </div>
+        <div>
+          <div class="ci-name"><a href="../product/?id=${item.id}" style="color:inherit;">${item.name}</a></div>
+          <div class="ci-sub">${item.subcategory || ''}</div>
+          <div class="ci-price">${formatPrice(lineTotal)}</div>
+          <div class="ci-actions">
+            <div class="qty-control">
+              <button class="qty-btn ci-qty-minus" data-key="${item._key}">−</button>
+              <span class="qty-num" style="font-size:14px;">${item.qty}</span>
+              <button class="qty-btn ci-qty-plus" data-key="${item._key}">+</button>
+            </div>
+            <button class="ci-remove" data-key="${item._key}">Remove</button>
+          </div>
+        </div>
+        <div style="text-align:right;white-space:nowrap;">
+          <div style="font-size:13px;color:var(--text-light);">${formatPrice(price)} each</div>
+        </div>
+      </div>`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homey Vibes | Cozy PJs & Cashes for Women — Shop Online Egypt</title>
+  <meta name="description" content="Shop Homey Vibes — Egypt's favourite feminine home wear brand. Soft PJs and Cashes in One Size (55–70kg) and Big Size (80–110kg). Cash on delivery all over Egypt. بيجامات وكاشات نسائية بالتوصيل لكل مصر.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Landing-specific styles */
+    .landing-hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - var(--ann-h) - var(--nav-h));
+      overflow: hidden;
+    }
+    .lh-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px;
+      background: var(--cream);
+      z-index: 2;
+    }
+    .lh-visual {
+      background: var(--blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .lh-visual-pattern {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blush);
+    }
+    /* Decorative floral SVG pattern */
+    .lh-deco {
+      position: absolute;
+      inset: 0;
+      opacity: .12;
+    }
+    /* Features row */
+    .features-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      background: var(--white);
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 32px;
+      border-right: 1px solid var(--border-soft);
+    }
+    .feature-item:last-child { border-right: none; }
+    .feature-icon { color: var(--rose); flex-shrink: 0; }
+    .feature-item h5 { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+    .feature-item p  { font-size: 12.5px; color: var(--text-light); }
+    /* Testimonials */
+    .testimonials { background: var(--blush); padding: 64px 40px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: var(--max-w); margin: 0 auto; }
+    .testi-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      border: 1px solid var(--border-soft);
+    }
+    .testi-stars { color: var(--rose); font-size: 14px; margin-bottom: 10px; letter-spacing: 2px; }
+    .testi-text { font-size: 14.5px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .testi-author { font-size: 13px; font-weight: 500; color: var(--text-dark); }
+    /* Newsletter */
+    .newsletter-bar { background: var(--rose-deep); color: var(--white); padding: 48px 40px; text-align: center; }
+    .newsletter-bar h2 { font-family: var(--ff-display); font-size: 36px; font-weight: 400; margin-bottom: 10px; }
+    .newsletter-bar p  { font-size: 15px; opacity: .8; margin-bottom: 24px; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1;
+      padding: 13px 16px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.1);
+      color: var(--white);
+      font-size: 14px;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.5); }
+    .newsletter-form input:focus { outline: none; border-color: rgba(255,255,255,.6); }
+    .btn-newsletter {
+      background: var(--white);
+      color: var(--rose-deep);
+      padding: 13px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .btn-newsletter:hover { background: var(--blush); }
+    @media (max-width: 768px) {
+      .landing-hero { grid-template-columns: 1fr; }
+      .lh-visual { min-height: 300px; }
+      .lh-content { padding: 48px 24px; }
+      .features-row { grid-template-columns: 1fr 1fr; }
+      .feature-item { border-right: none; border-bottom: 1px solid var(--border-soft); }
+      .testi-grid { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
+
+  <!-- ═══ Schema.org Structured Data (Rich Results on Google) ══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://homey-vibes.store/#organization",
+        "name": "Homey Vibes",
+        "url": "https://homey-vibes.store/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://homey-vibes.store/H-V_Logo.jpeg",
+          "width": 1080,
+          "height": 1080
+        },
+        "description": "Feminine home wear brand based in Egypt, specializing in soft PJs and Cashes for women in One Size and Big Size.",
+        "areaServed": { "@type": "Country", "name": "Egypt" },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": ["Arabic", "English"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://homey-vibes.store/#website",
+        "url": "https://homey-vibes.store/",
+        "name": "Homey Vibes",
+        "description": "Egypt's cozy feminine home wear — PJs and Cashes in every size",
+        "publisher": { "@id": "https://homey-vibes.store/#organization" }
+      },
+      {
+        "@type": "Store",
+        "@id": "https://homey-vibes.store/#store",
+        "name": "Homey Vibes",
+        "url": "https://homey-vibes.store/",
+        "image": "https://homey-vibes.store/H-V_Logo.jpeg",
+        "description": "Shop cozy PJs and Cashes in One Size and Big Size. Made in Egypt. Cash on delivery.",
+        "priceRange": "EGP",
+        "currenciesAccepted": "EGP",
+        "paymentAccepted": "Cash on Delivery",
+        "areaServed": "Egypt"
+      },
+      {
+        "@type": "ItemList",
+        "name": "Homey Vibes Collections",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "PJs Collection",
+            "url": "https://homey-vibes.store/shop/?cat=PJs",
+            "description": "Soft pajama sets for women in One Size and Big Size"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cashes Collection",
+            "url": "https://homey-vibes.store/shop/?cat=Cashes",
+            "description": "Effortless loungewear dresses in One Size and Big Size"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ═══ SEO ═══════════════════════════════════════════════ -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Homey Vibes">
+  <meta name="keywords" content="homey vibes, بيجامات, كاشات, ملابس بيت, homewear egypt, PJs egypt, cashes egypt, ملابس منزلية">
+  <link rel="canonical" href="https://homey-vibes.store/">
+
+  <!-- ═══ Open Graph (Facebook, WhatsApp, iMessage) ══════════ -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Homey Vibes">
+  <meta property="og:url"         content="https://homey-vibes.store/">
+  <meta property="og:title"       content="Homey Vibes — Wrapped in warmth, made for you">
+  <meta property="og:description" content="Feminine home wear for every woman. Shop cozy PJs and Cashes in One Size and Big Size. Cash on delivery across Egypt 🇪🇬">
+  <meta property="og:image"       content="https://homey-vibes.store/H-V_Logo.jpeg">
+  <meta property="og:image:width"  content="1080">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt"   content="Homey Vibes — Pyjamas & Cashes">
+  <meta property="og:locale"      content="ar_EG">
+
+  <!-- ═══ Twitter / X Card ══════════════════════════════════ -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Homey Vibes — Wrapped in warmth, made for you">
+  <meta name="twitter:description" content="Feminine home wear for every woman. Shop cozy PJs and Cashes in One Size and Big Size. Cash on delivery across Egypt 🇪🇬">
+  <meta name="twitter:image"       content="https://homey-vibes.store/H-V_Logo.jpeg">
+
+  <!-- ═══ Theme colour (browser UI on mobile) ═══════════════ -->
+  <meta name="theme-color" content="#9d5a5e">
+</head>
+<body>
+
+<div id="announcement-bar"></div>
+<header id="main-header"></header>
+
+<!-- ======= HERO ======= -->
+<section class="landing-hero">
+  <div class="lh-content">
+    <p class="hero-eyebrow">New Collection · 2026</p>
+    <h1 class="hero-title">
+      Cozy looks<br>for <em>her</em> world
+    </h1>
+    <p class="hero-desc">Feminine home wear crafted with love. From lazy Sunday mornings to soft evening wind-downs — Homey Vibes wraps you in comfort.</p>
+    <div class="hero-btns">
+      <a href="shop/" class="btn btn-primary">Shop the Collection</a>
+      <a href="shop/?cat=PJs" class="btn btn-outline">Explore PJs</a>
+    </div>
+  </div>
+  <div class="lh-visual">
+    <div class="lh-visual-pattern">
+      <!-- Decorative floral illustration -->
+      <svg class="lh-deco" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" fill="var(--rose-deep)">
+        <circle cx="300" cy="350" r="200" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="300" cy="350" r="140" fill="none" stroke="currentColor" stroke-width=".8"/>
+        <circle cx="300" cy="350" r="80" fill="none" stroke="currentColor" stroke-width=".6"/>
+        <!-- Petals -->
+        <g transform="translate(300,350)">
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-170" rx="28" ry="50" fill="currentColor" opacity=".5" transform="rotate(315)"/>
+          <circle cx="0" cy="0" r="30" fill="currentColor" opacity=".6"/>
+          <!-- Inner petals -->
+          <ellipse cx="0" cy="-100" rx="16" ry="30" fill="currentColor" opacity=".4"/>
+          <ellipse cx="0" cy="-100" rx="16" ry="30" fill="currentColor" opacity=".4" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-100" rx="16" ry="30" fill="currentColor" opacity=".4" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-100" rx="16" ry="30" fill="currentColor" opacity=".4" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-100" rx="16" ry="30" fill="currentColor" opacity=".4" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-100" rx="16" ry="30" fill="currentColor" opacity=".4" transform="rotate(300)"/>
+        </g>
+        <!-- Corner florals -->
+        <g transform="translate(60,60) scale(.5)">
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(60)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(120)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(240)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(300)"/>
+          <circle cx="0" cy="0" r="12" fill="currentColor" opacity=".4"/>
+        </g>
+        <g transform="translate(540,640) scale(.4)">
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(72)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(144)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(216)"/>
+          <ellipse cx="0" cy="-60" rx="14" ry="25" fill="currentColor" opacity=".3" transform="rotate(288)"/>
+          <circle cx="0" cy="0" r="10" fill="currentColor" opacity=".4"/>
+        </g>
+      </svg>
+      <!-- Large typography overlay -->
+      <div style="text-align:center; z-index:1; position:relative;">
+        <p style="font-family:var(--ff-display);font-size:clamp(80px,12vw,160px);font-weight:300;color:var(--rose-dark);opacity:.18;line-height:1;">HV</p>
+        <p style="font-family:var(--ff-display);font-size:18px;font-style:italic;color:var(--rose-dark);opacity:.5;letter-spacing:.1em;">Homey Vibes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FEATURES BAR ======= -->
+<div class="features-row">
+  <div class="feature-item">
+    <div class="feature-icon">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+    <div>
+      <h5>Fast Delivery</h5>
+      <p>Across all of Egypt</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div>
+      <h5>Safe Payment</h5>
+      <p>Cash on delivery</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div>
+      <h5>Made with Love</h5>
+      <p>Designed for her comfort</p>
+    </div>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <div>
+      <h5>Easy Returns</h5>
+      <p>Hassle-free exchanges</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======= CATEGORIES ======= -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-eyebrow">Explore</p>
+    <h2 class="section-title">Shop by <em>Category</em></h2>
+    <p class="section-desc">Two cozy worlds, endless possibilities — in every size</p>
+  </div>
+  <div class="cat-grid">
+    <a href="shop/?cat=PJs" class="cat-card">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg, #f2e4df 0%, #e8c8c4 100%);display:flex;align-items:center;justify-content:center;">
+        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="30" width="100" height="130" rx="16" fill="#C88A8F" opacity=".3"/>
+          <rect x="55" y="30" width="70" height="20" rx="6" fill="#C88A8F" opacity=".5"/>
+          <line x1="40" y1="90" x2="140" y2="90" stroke="#C88A8F" stroke-width="2" opacity=".4"/>
+          <circle cx="90" cy="60" r="12" fill="#9B5A60" opacity=".4"/>
+          <path d="M70 110 Q90 130 110 110" stroke="#9B5A60" stroke-width="2" fill="none" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="cat-card-overlay">
+        <div class="cat-card-label">PJs</div>
+        <div class="cat-card-desc">Pajama sets for the dreamiest nights</div>
+        <span class="cat-card-cta">Shop Now →</span>
+      </div>
+    </a>
+    <a href="shop/?cat=Cashes" class="cat-card">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg, #ede0d8 0%, #d9c4bc 100%);display:flex;align-items:center;justify-content:center;">
+        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M55 30 L125 30 L140 90 L125 160 L55 160 L40 90 Z" fill="#9B5A60" opacity=".3"/>
+          <path d="M70 30 C70 30 60 60 60 90 C60 120 70 150 70 150" stroke="#9B5A60" stroke-width="2" fill="none" opacity=".4"/>
+          <path d="M110 30 C110 30 120 60 120 90 C120 120 110 150 110 150" stroke="#9B5A60" stroke-width="2" fill="none" opacity=".4"/>
+          <ellipse cx="90" cy="40" rx="30" ry="12" fill="#C88A8F" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="cat-card-overlay">
+        <div class="cat-card-label">Cashes</div>
+        <div class="cat-card-desc">Effortless loungewear for every day</div>
+        <span class="cat-card-cta">Shop Now →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ======= FEATURED PRODUCTS ======= -->
+<section class="section" style="padding-top:0;">
+  <div class="section-header">
+    <p class="section-eyebrow">Bestsellers</p>
+    <h2 class="section-title">New <em>Arrivals</em></h2>
+    <p class="section-desc">Handpicked favourites — fresh in stock</p>
+  </div>
+  <div class="product-grid" id="featured-grid">
+    <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+    <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+    <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+    <div class="skeleton" style="aspect-ratio:4/5;border-radius:10px;"></div>
+  </div>
+  <div class="text-center mt-32">
+    <a href="shop/" class="btn btn-outline">View All Products</a>
+  </div>
+</section>
+
+<!-- ======= BANNER ======= -->
+<div class="banner-strip">
+  <div style="max-width:600px;margin:0 auto;">
+    <h2>She deserves the <em style="font-family:var(--ff-display);font-style:italic;">softest</em> things</h2>
+    <p>PJs and Cashes available in One Size and Big Size — because comfort has no limits.</p>
+    <a href="shop/" class="btn" style="background:var(--white);color:var(--rose-deep);">Discover the Collection</a>
+  </div>
+</div>
+
+<!-- ======= SIZE GUIDE STRIP ======= -->
+<section class="section">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto;" id="size-guide-grid">
+    <div style="background:var(--white);border:1px solid var(--border-soft);border-radius:var(--radius);padding:32px;text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">✨</div>
+      <h3 style="font-family:var(--ff-display);font-size:22px;font-weight:500;margin-bottom:8px;">One Size</h3>
+      <p style="color:var(--text-mid);font-size:14px;line-height:1.7;">Fits sizes 55–70kg comfortably. Relaxed and flowy — designed to drape beautifully.</p>
+      <a href="shop/?sub=One+Size" class="btn btn-outline mt-16" style="font-size:12px;padding:10px 20px;">Shop One Size</a>
+    </div>
+    <div style="background:var(--blush);border:1px solid var(--border-soft);border-radius:var(--radius);padding:32px;text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">🌸</div>
+      <h3 style="font-family:var(--ff-display);font-size:22px;font-weight:500;margin-bottom:8px;">Big Size</h3>
+      <p style="color:var(--text-mid);font-size:14px;line-height:1.7;">Fits sizes 80–110kg generously. Extra roomy, extra cozy — made to celebrate every curve.</p>
+      <a href="shop/?sub=Big+Size" class="btn btn-primary mt-16" style="font-size:12px;padding:10px 20px;">Shop Big Size</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= TESTIMONIALS ======= -->
+<div class="testimonials">
+  <div style="max-width:var(--max-w);margin:0 auto;">
+    <div class="section-header" style="margin-bottom:36px;">
+      <p class="section-eyebrow">Reviews</p>
+      <h2 class="section-title">She <em>loves</em> it</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The softest PJ set I've ever worn. The fabric is absolutely dreamy and the fit is perfect. Already ordered two more!"</p>
+        <p class="testi-author">Nour M. — Cairo</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I got the Big Size cash dress and I'm obsessed. So flattering and comfortable. Fast delivery too — arrived in 2 days!"</p>
+        <p class="testi-author">Hana A. — Alexandria</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Homey Vibes really lives up to its name. The designs are feminine and elegant. Will definitely be ordering more gifts for my friends."</p>
+        <p class="testi-author">Rania K. — Giza</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======= NEWSLETTER ======= -->
+<div class="newsletter-bar">
+  <h2>Join the Homey Vibes club</h2>
+  <p>Get early access to new arrivals, exclusive promo codes, and cozy inspiration.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="your@email.com" id="nl-email">
+    <button class="btn-newsletter" onclick="subscribeNewsletter()">Subscribe</button>
+  </div>
+</div>
+
+<div id="main-footer"></div>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/common.js"></script>
+<script src="js/products.js"></script>
+<script>
+  // Load featured products
+  document.addEventListener('DOMContentLoaded', async () => {
+    const grid = document.getElementById('featured-grid');
+    const items = await Products.getFiltered({ featured: true });
+    const show  = items.slice(0, 4);
+    if (!show.length) {
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-light);">Products coming soon!</p>';
+      return;
+    }
+    grid.innerHTML = show.map((p, i) => {
+      let html = Products.cardHTML(p);
+      // Stagger animation
+      html = html.replace('class="product-card"', `class="product-card" style="animation-delay:${i * 0.1}s"`);
+      return html;
+    }).join('');
+    // Quick add buttons
+    grid.querySelectorAll('.btn-quick-add').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const id = btn.dataset.id;
+        const product = await Products.getById(id);
+        if (!product) return;
+        Cart.add(product, 1);
+        showToast(`${product.name} added to cart ✓`);
+      });
+    });
+  });
+
+  function subscribeNewsletter() {
+    const email = document.getElementById('nl-email').value.trim();
+    if (!email || !email.includes('@')) { showToast('Please enter a valid email', 'error'); return; }
+    showToast('Thanks for subscribing! 💌');
+    document.getElementById('nl-email').value = '';
+  }
+</script>
+</body>
+</html>
