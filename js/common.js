@@ -224,6 +224,7 @@ function openSearch() {
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(() => document.getElementById('search-main-input')?.focus(), 50);
+  runSearch('');
 }
 
 function closeSearch() {
@@ -241,7 +242,17 @@ async function runSearch(query) {
   const area = document.getElementById('search-results-area');
   if (!area) return;
 
-  if (!query) { area.innerHTML = ''; return; }
+  if (!query) {
+    // Show all active products
+    let products = [];
+    try { products = await Products.fetchAll(); } catch (e) {}
+    const all = products.filter(p => p.active === true || p.active === 'TRUE' || p.active === undefined);
+    area.innerHTML = `
+      <div class="search-results-label">${all.length} product${all.length !== 1 ? 's' : ''}</div>
+      <div class="search-results-grid">${all.map(p => Products.cardHTML(p)).join('')}</div>`;
+    bindQuickAdd(area, all);
+    return;
+  }
 
   area.innerHTML = '<div class="search-results-label">Searching…</div>';
 
@@ -273,11 +284,14 @@ async function runSearch(query) {
       ${results.map(p => Products.cardHTML(p)).join('')}
     </div>`;
 
-  // Quick-add buttons inside results
+  bindQuickAdd(area, results);
+}
+
+function bindQuickAdd(area, products) {
   area.querySelectorAll('.btn-quick-add').forEach(btn => {
     btn.addEventListener('click', async e => {
       e.preventDefault();
-      const product = results.find(p => String(p.id) === String(btn.dataset.id));
+      const product = products.find(p => String(p.id) === String(btn.dataset.id));
       if (product) { Cart.add(product, 1); showToast('Added to cart ✓'); }
     });
   });
