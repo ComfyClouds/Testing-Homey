@@ -1,6 +1,6 @@
 /* ============================================================
    HOMEY VIBES — Global Stylesheet
-   Aesthetic: Soft Feminine Editorial · Warm cream + dusty rose
+   Aesthetic: Soft Feminine Editorial · Cool lavender + plum
    Fonts: Cormorant Garamond (display) + DM Sans (body)
    ============================================================ */
 
@@ -8,38 +8,32 @@
 
 /* -------- Variables ---------------------------------------- */
 :root {
-  /* Brand Identity & Accents */
-  --cream:       #1A202C; /* Dark midnight-blue background base for a rich, luxury dark mode */
-  --oatmeal:     #2D3748; /* Deep slate container background for sections and banners */
-  --sage-light:  #4A5568; /* Soft charcoal-blue for hover states and secondary backgrounds */
-  --sage:        #A0AEC0; /* Core brand color: muted powder blue, pops beautifully against dark backgrounds */
-  --sage-dark:   #CBD5E0; /* Light silver-blue for prominent active links and high-contrast buttons */
-  --sage-deep:   #E2E8F0; /* Brightest structural accent for elegant highlights */
- 
-  /* Text & Typography */
-  --text-dark:   #F7FAFC; /* Bright off-white for crisp, highly readable main headings */
-  --text-mid:    #E2E8F0; /* Clear light-grey for body text, descriptions, and metadata */
-  --text-light:  #A0AEC0; /* Muted slate-grey for placeholders and secondary labels */
-  --white:       #2D3748; /* Deep slate background for product cards to stand out on the dark base */
- 
-  /* Borders & Dividers */
-  --border:      #4A5568; /* Subtle dark border for product cards and form inputs */
-  --border-soft: #2D3748; /* Deep divider line for separating page sections without clashing */
- 
-  /* System Status */
-  --success:     #48BB78; /* Vibrant mint green for successful actions and badges */
-  --error:       #F56565; /* Bright coral red for alerts and out-of-stock messages */
- 
-  --ff-display:  'Cormorant Garamond', Georgia, serif;
-  --ff-body:     'DM Sans', system-ui, sans-serif;
+  --cream:       #F5F3FA;
+  --blush:       #EAE4F5;
+  --rose:        #9B8EC4;
+  --rose-dark:   #6B5A9E;
+  --rose-deep:   #3D2B6E;
+  --taupe:       #A89BB8;
+  --warm-brown:  #5A4A7A;
+  --text-dark:   #1E1530;
+  --text-mid:    #6A5880;
+  --text-light:  #9A88AA;
+  --white:       #FFFFFF;
+  --border:      #D8CFF0;
+  --border-soft: #EDE8F8;
+  --success:     #5A8A6A;
+  --error:       #C05050;
 
-  --nav-h:       68px;
-  --ann-h:       40px;
-  --max-w:       1280px;
-  --radius:      10px;
-  --radius-sm:   6px;
-  --shadow:      0 4px 24px rgba(0, 0, 0, 0.4);
-  --transition:  .25s ease;
+  --ff-display: 'Cormorant Garamond', Georgia, serif;
+  --ff-body:    'DM Sans', system-ui, sans-serif;
+
+  --nav-h:           68px;
+  --ann-h:           40px;
+  --max-w:           1280px;
+  --radius:          10px;
+  --radius-sm:       6px;
+  --shadow:          0 4px 24px rgba(42,27,30,.07);
+  --transition:      .25s ease;
 }
 
 /* -------- Reset -------------------------------------------- */
@@ -102,7 +96,7 @@ input, select, textarea { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 99;
-  background: rgba(251,247,242,.96);
+  background: rgba(245,243,250,.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-soft);
